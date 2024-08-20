@@ -1,16 +1,14 @@
 ---
-title: "Untitled"
+title: "DAG de prducción lechera"
+author: "Selem Enrique Vazquez"
+
 format: html
 editor: source
 ---
 
-## Quarto
+## Transfiere DAG de Miro a R
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+Utilizando la biblioteca [miro2bayes](https://github.com/equihuam/miro2bayesNet). A continuación tenemos el reporte de _validación_ del **DAG** diseñado en _Miro_.
 
 ```{r}
 library(miro2bayes)
@@ -24,3 +22,12 @@ datos_leche <- getMiro(board = tableros$id[grepl("table-3", tableros$name)],
 miroValidation(datos_leche)
 
 ```
+
+ 
+
+
+
+
+
+
+
