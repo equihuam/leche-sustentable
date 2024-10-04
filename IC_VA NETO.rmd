@@ -1,0 +1,12 @@
+---
+title: "Conditional Independences"
+output: html_document
+date: "2024-08-24"
+---
+## _VA NETO_
+$$
+\newcommand{\indep}{\perp\!\!\!\perp}
+$$
+
+
+

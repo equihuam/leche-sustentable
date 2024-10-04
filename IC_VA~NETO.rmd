@@ -1,0 +1,38 @@
+---
+title: "Conditional Independences"
+output: html_document
+date: "2024-08-24"
+---
+## _VA~NETO_
+$$
+\newcommand{\indep}{\perp\!\!\!\perp}
+$$
+
+$\color{blue} {COMB~ \indep ~VA~NETO~~} | ~VARIABLES~TECNICAS$
+
+$\color{blue} {ESTUDIOS~ \indep ~VA~NETO~~} | ~VARIABLES~TECNICAS$
+
+$\color{blue} {ESTUDIOS~ \indep ~VA~NETO~~} | ~INDICE~PRO~AMBIENTE$
+
+$\color{blue} {INDICE~ \indep ~VA~NETO~~} | ~VARIABLES~TECNICAS$
+
+$\color{blue} {INDICE~ \indep ~VA~NETO~~} | ~INDICE~INTEGRIDAD~ECOSISTEMICA,~M3~YEAR,~TON~CO2~EQ~YEAR$
+
+$\color{blue} {INDICE~INTEGRIDAD~ECOSISTEMICA~ \indep ~VA~NETO~~} | ~VARIABLES~TECNICAS$
+
+$\color{blue} {INDICE~POLITICA~PUBLICA~ \indep ~VA~NETO~~} | ~VARIABLES~TECNICAS$
+
+$\color{blue} {INDICE~POLITICA~PUBLICA~ \indep ~VA~NETO~~} | ~INDICE~PRO~AMBIENTE$
+
+$\color{blue} {INDICE~PRO~AMBIENTE~ \indep ~VA~NETO~~} | ~VARIABLES~TECNICAS$
+
+$\color{blue} {INVERSION~ \indep ~VA~NETO~~} | ~VARIABLES~TECNICAS$
+
+$\color{blue} {M3~YEAR~ \indep ~VA~NETO~~} | ~VARIABLES~TECNICAS$
+
+$\color{blue} {RENTABILIDAD~T0~ \indep ~VA~NETO~~} | ~VARIABLES~TECNICAS$
+
+$\color{blue} {RENTABILIDAD~T0~ \indep ~VA~NETO~~} | ~INVERSION$
+
+$\color{blue} {TON~CO2~EQ~YEAR~ \indep ~VA~NETO~~} | ~VARIABLES~TECNICAS$
+

@@ -1,0 +1,399 @@
+// ~->[DNET-1]->~
+
+// File created by miro2bayesusing Netica 6.05 on Jun 03, 2023 at 03:09:37 UTC.
+
+bnet NA {
+autoupdate = TRUE;
+whenchanged = 1727999972;
+
+visual V1 {
+    defdispform = BELIEFBARS;
+    nodelabeling = TITLE;
+    NodeMaxNumEntries = 50;
+    nodefont = font {shape= "Arial"; size= 9;};
+    linkfont = font {shape= "Arial"; size= 9;};
+    ShowLinkStrengths = 1;
+    windowposn = (26, 26, 1002, 383);
+    resolution = 72;
+    drawingbounds = (1500, 800);
+    showpagebreaks = FALSE;
+    usegrid = TRUE;
+    gridspace = (6, 6);
+    NodeSet Node {BuiltIn = 1; Color = 0x00e1e1e1;};
+    NodeSet Nature {BuiltIn = 1; Color = 0x00f8eed2;};
+    NodeSet Deterministic {BuiltIn = 1; Color = 0x00d3caa6;};
+    NodeSet Finding {BuiltIn = 1; Color = 0x00c8c8c8;};
+    NodeSet Constant {BuiltIn = 1; Color = 0x00ffffff;};
+    NodeSet ConstantValue {BuiltIn = 1; Color = 0x00ffffb4;};
+    NodeSet Utility {BuiltIn = 1; Color = 0x00ffbdbd;};
+    NodeSet Decision {BuiltIn = 1; Color = 0x00dee8ff;};
+    NodeSet Documentation {BuiltIn = 1; Color = 0x00f0fafa;};
+    NodeSet Title {BuiltIn = 1; Color = 0x00ffffff;};
+    NodeSet Servicios {Color = 0x0e9fdd9;};
+    NodeSet Servicios {NA;};
+    NodeSet Servicios {NA;};
+    NodeSet Servicios {NA;};
+    NodeSet Servicios {NA;};
+    NodeSet Servicios {NA;};
+    PrinterSetting A {
+        margins = (1270, 1270, 1270, 1270);
+        };
+    };
+
+node M3_YEAR {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = (IND_INTEGR_ECO,M3_DESECHO);
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (1131, 597);
+        height = 1;
+        };
+    };
+
+node CAPITAL_T0 {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = (RENTABILIDAD_T0);
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (648, 415);
+        height = 2;
+        };
+    };
+
+node RENTABILIDAD_T0 {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = ();
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (789, 415);
+        height = 3;
+        };
+    };
+
+node INDICE DE INDICADORES AMB_PREV {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = ();
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (1191, 377);
+        height = 4;
+        };
+    };
+
+node VA_NETO {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = (INDICE DE INDICADORES AMB_T0,LT_VIENTRE_TIEMPO);
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (976, 70);
+        height = 5;
+        };
+    };
+
+node IND_INTEGR_ECO {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = (AREA_PREDIO);
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (1131, 745);
+        height = 6;
+        };
+    };
+
+node LT_VIENTRE_TIEMPO {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = (CAPITAL_T0,INDICE DE INDICADORES AMB_PREV,INDICE_SOCIOAMBIENTAL,AREA_PREDIO);
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (763, 700);
+        height = 7;
+        };
+    };
+
+node TCO2_EQUIV_TIEMPO {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = (IND_INTEGR_ECO,EMISIONES_GFI);
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (1123, 665);
+        height = 8;
+        };
+    };
+
+node EMPLEADOS_T0 {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = ();
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (295, 247);
+        height = 9;
+        };
+    };
+
+node INDICE_CULTURA_GANADERA {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = ();
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (302, 501);
+        height = 10;
+        };
+    };
+
+node INDICE_POLITICA_PUBLICA {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = ();
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (596, 385);
+        height = 11;
+        };
+    };
+
+node INDICE_SOCIOAMBIENTAL {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = (INDICE_POLITICA_PUBLICA,NIVEL_DE_ESTUDIOS);
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (596, 617);
+        height = 12;
+        };
+    };
+
+node INDICE DE INDICADORES AMB_T0 {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = (M3_YEAR,IND_INTEGR_ECO,TCO2_EQUIV_TIEMPO);
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (1342, 373);
+        height = 13;
+        };
+    };
+
+node NIVEL_DE_ESTUDIOS {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = (INDICE_CULTURA_GANADERA);
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (460, 617);
+        height = 14;
+        };
+    };
+
+node INDICE SATISFACCION {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = ();
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (302, 385);
+        height = 15;
+        };
+    };
+
+node EDAD {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = ();
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (131, 385);
+        height = 16;
+        };
+    };
+
+node EXPERIENCIA_TIEMPO {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = (EDAD);
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (131, 617);
+        height = 17;
+        };
+    };
+
+node AREA_PREDIO {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = (INDICE_ADMON_UP);
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (763, 800);
+        height = 18;
+        };
+    };
+
+node INDICE_ADMON_UP {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = (NIVEL_DE_ESTUDIOS,EXPERIENCIA_TIEMPO);
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (460, 721);
+        height = 19;
+        };
+    };
+
+node M3_DESECHO {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = ();
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (1006, 589);
+        height = 20;
+        };
+    };
+
+node EMISIONES_GFI {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = (LT_VIENTRE_TIEMPO);
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (1006, 662);
+        height = 21;
+        };
+    };
+
+node CAPITAL_T1 {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = (VA_NETO);
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (769, 328);
+        height = 22;
+        };
+    };
+
+node EMPLEADOS_T1 {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = (EMPLEADOS_T0,VA_NETO);
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (460, 247);
+        height = 23;
+        };
+    };
+
+node INDICE_DE_RELEVO {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = (INDICE_CULTURA_GANADERA,INDICE_POLITICA_PUBLICA,VA_NETO,NIVEL_DE_ESTUDIOS,INDICE SATISFACCION);
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (460, 385);
+        height = 24;
+        };
+    };
+
+node RENTABILIDAD T1 {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = (VA_NETO);
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (1500, 376);
+        height = 25;
+        };
+    };
+
+node INDICE_ASOCIATIVIDAD {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = (NIVEL_DE_ESTUDIOS);
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (302, 617);
+        height = 26;
+        };
+    };
+
+node INDICE_BIENESTAR_ANIMAL {
+    discrete = TRUE;
+    states = (A, B, C);
+    kind = NATURE;
+    chance = CHANCE;
+    parents = (INDICE_SOCIOAMBIENTAL,LT_VIENTRE_TIEMPO);
+    whenchanged = 1727999972;
+    visual V1 {
+        center = (596, 721);
+        height = 27;
+        };
+    };
+NodeSet Servicios {Nodes = (M3_YEAR,IND_INTEGR_ECO,TCO2_EQUIV_TIEMPO,M3_DESECHO,EMISIONES_GFI);};
+NodeSet Capital {Nodes = (CAPITAL_T0,RENTABILIDAD_T0,CAPITAL_T1);};
+NodeSet Eficiencia {Nodes = (INDICE DE INDICADORES AMB_PREV,INDICE DE INDICADORES AMB_T0,RENTABILIDAD T1);};
+NodeSet Economia {Nodes = (VA_NETO);};
+NodeSet Manejo {Nodes = (LT_VIENTRE_TIEMPO,AREA_PREDIO);};
+NodeSet Sociedad {Nodes = (EMPLEADOS_T0,INDICE_CULTURA_GANADERA,INDICE_POLITICA_PUBLICA,INDICE_SOCIOAMBIENTAL,NIVEL_DE_ESTUDIOS,INDICE SATISFACCION,EDAD,EXPERIENCIA_TIEMPO,INDICE_ADMON_UP,EMPLEADOS_T1,INDICE_DE_RELEVO,INDICE_ASOCIATIVIDAD,INDICE_BIENESTAR_ANIMAL);};
+};

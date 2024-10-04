@@ -1,0 +1,34 @@
+---
+title: "Conditional Independences"
+output: html_document
+date: "2024-08-25"
+---
+## _INDICE~PRO~AMBIENTE_
+$$
+\newcommand{\indep}{\perp\!\!\!\perp}
+$$
+
+$\color{blue} {EMPLEO~ \indep ~INDICE~PRO~AMBIENTE~~} | ~VARIABLES~TECNICAS$
+
+$\color{blue} {EMPLEO~ \indep ~INDICE~PRO~AMBIENTE~~} | ~VA~NETO$
+
+$\color{blue} {INDICE~ \indep ~INDICE~PRO~AMBIENTE~~} | ~VARIABLES~TECNICAS$
+
+$\color{blue} {INDICE~ \indep ~INDICE~PRO~AMBIENTE~~} | ~INDICE~INTEGRIDAD~ECOSISTEMICA,~M3~YEAR,~TON~CO2~EQ~YEAR$
+
+$\color{blue} {INDICE~DE~RELEVO~ \indep ~INDICE~PRO~AMBIENTE~~} | ~ESTUDIOS,~INDICE~POLITICA~PUBLICA,~VARIABLES~TECNICAS$
+
+$\color{blue} {INDICE~DE~RELEVO~ \indep ~INDICE~PRO~AMBIENTE~~} | ~ESTUDIOS,~INDICE~POLITICA~PUBLICA,~VA~NETO$
+
+$\color{blue} {INDICE~INTEGRIDAD~ECOSISTEMICA~ \indep ~INDICE~PRO~AMBIENTE~~} | ~VARIABLES~TECNICAS$
+
+$\color{blue} {INDICE~PRO~AMBIENTE~ \indep ~M3~YEAR~~} | ~VARIABLES~TECNICAS$
+
+$\color{blue} {INDICE~PRO~AMBIENTE~ \indep ~RENTABILIDAD~~} | ~VA~NETO$
+
+$\color{blue} {INDICE~PRO~AMBIENTE~ \indep ~RENTABILIDAD~~} | ~VARIABLES~TECNICAS$
+
+$\color{blue} {INDICE~PRO~AMBIENTE~ \indep ~TON~CO2~EQ~YEAR~~} | ~VARIABLES~TECNICAS$
+
+$\color{blue} {INDICE~PRO~AMBIENTE~ \indep ~VA~NETO~~} | ~VARIABLES~TECNICAS$
+
