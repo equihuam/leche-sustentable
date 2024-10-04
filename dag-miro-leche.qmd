@@ -1,33 +1,183 @@
 ---
-title: "DAG de prducción lechera"
+title: "DAG de producción lechera"
 author: "Selem Enrique Vazquez"
 
-format: html
+format: 
+  html:
+    embed-resources: true
+    self-contained-math: true
+
 editor: source
+editor_options: 
+  chunk_output_type: console
+
+code-fold: true
 ---
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+#| echo: false
+
+# suppressPackageStartupMessages
+
+library(miro2bayes)
+library(bnlearn)
+library(bnviewer)
+library(tidyverse)
+library(dagitty)
+library(bnviewer)
+library(gRain)
+library(graph)
+library(Rgraphviz)
+library(stringr)
+library(flextable)
+library(DT)
+```
 
 ## Transfiere DAG de Miro a R
 
-Utilizando la biblioteca [miro2bayes](https://github.com/equihuam/miro2bayesNet). A continuación tenemos el reporte de _validación_ del **DAG** diseñado en _Miro_.
+En *Miro* se trabajaron varios posibles *DAG*, la lista de estos tableros se ilustra en la tabla @tbl-tableros-miro.
+
+Utilizando la biblioteca [miro2bayes](https://github.com/equihuam/miro2bayesNet). Convertiremos el modelo causal diseñado en [Miro](https://miro.com/) a **R**. A partir de esta operación será posible analizar formalmente el DAG. En **R** esto se puede hacer con las bibliotecas *dagitty* y *bnlearn*. Fuera de **R** se puede recurrir a [*Netica*](https://www.norsys.com/netica.html) y a [*Genie*](https://www.bayesfusion.com/), por ejemplo.
 
 ```{r}
-library(miro2bayes)
+#| label: tbl-tableros-miro
+#| tbl-cap: Lista de tableros "lecheros" en Miro
 
 tableros <- miroBoards(servMiro = "miro-leche", user = "miguel")
 
-datos_leche <- getMiro(board = tableros$id[grepl("table-3", tableros$name)], 
-                         servMiro = "miro-leche", 
-                         user = "miguel")
-
-miroValidation(datos_leche)
+tableros |> 
+  flextable(col_keys = c("id", "name", "modifiedAt"))
 
 ```
 
- 
+De los modelos DAG elaborados, el que analizaremos y utilizaremos para hacer el análisis formal es `r tableros$name[grepl("table-4", tableros$name)]` 
+
+A continuación tenemos el reporte de *validación* del **DAG** diseñado en *Miro*.
+
+```{r}
+#| label: dag_rec
+
+datos_leche <- getMiro(board = tableros$id[grepl("table-4", tableros$name)],
+                       servMiro = "miro-leche", 
+                       user = "miguel")
+
+miroValidation(datos_leche)
+```
+
+El _DAG_ contiene las siguientes variables
+
+```{r}
+#| label: variables
+
+variables <- tibble(var = datos_leche$nodes$var)
+tibble(var = datos_leche$nodes$var, def = datos_leche$nodes$text) |> 
+  flextable()
+```
+
+Ahora podemos ensayar algunas operaciones analíticas básicas. Podemos empezar por ver las formas de independencia que implica este _DAG_ alrededor de algunos nodos. Por ejemplo, _Valor agregado_
+
+
+```{r}
+#| label: red-dne
+
+leche_dne <- miro2DNE(datos_leche)
+
+write(leche_dne, "lechería-sólo-t0-v1.dne")
+
+
+#cond_indepOnvar(datos_leche, var = "VA_NETO")
+
+```
+
+Otra cosa que podemos hacer es producir una representación gráfica del _DAG_ tal y como fue asimilado en _R_. Lo primero que haremos es preparar las características de la gráfica, según nuestros intereses.
+
+```{r}
+#| label: prepara-grafica-dag
+#| output:  false
+
+leche_bn <- miro2bnlearn(miroData = datos_leche)
+
+write.dot("leche_net_bn.dot", leche_bn)
+
+leche_ig <- bn.to.igraph(leche_bn)
+leche_ig  
+
+# Distingue por tipo de variable
+grp <- datos_leche$frames$id
+
+gAmb1 <- datos_leche$nodes |>
+      filter(frame_id  == grp[1]) |>
+      select(var) |>
+      inner_join(variables)
+
+gAmb2 <- datos_leche$nodes |>
+  filter(frame_id  == grp[2]) |>
+  select(var) |>
+  inner_join(variables)
+
+gAmb3 <- datos_leche$nodes |>
+  filter(frame_id  == grp[3]) |>
+  select(var, id) |>
+  inner_join(variables, copy = TRUE)
+
+gAmb4 <- datos_leche$nodes |>
+  filter(frame_id  == grp[4]) |>
+  select(var) |>
+  inner_join(variables, copy = TRUE)
+
+gAmb5 <- datos_leche$nodes |>
+  filter(frame_id  == grp[5]) |>
+  select(var) |>
+  inner_join(variables, copy = TRUE)
+
+gAmb6 <- datos_leche$nodes |>
+  filter(frame_id  == grp[6]) |>
+  select(var) |>
+  inner_join(variables, copy = TRUE)
+
+colorear <-  c(rep("#55ddffff", length(gAmb1$var)),
+               rep("#99ff55ff", length(gAmb2$var)),
+               rep("#ffd42aff", length(gAmb3$var)),
+               rep("#F6CEF5ff", length(gAmb4$var)),
+               rep("#AAD5D7ff", length(gAmb5$var)),
+               rep("#F4B7C9ff", length(gAmb6$var))
+               )
+
+names(colorear) <- c(gAmb1$var, gAmb2$var, 
+                     gAmb3$var, gAmb4$var, 
+                     gAmb5$var, gAmb6$var) 
+
+leche_gr <- graphviz.plot(leche_bn, layout = "dot", 
+                          main = "Desempeño lechería familiar (T0)")
+```
+
+Una vez especificado todo lo necesario, lo que sigue es desplegar la gráfica.
+
+```{r}
+#|label: graf-dag
+
+nodeRenderInfo(leche_gr) <- list(fill = colorear)
+
+renderGraph(leche_gr)
+
+```
+
+
+```{r}
+#| label: tbl-ind_cond
+#| tbl-cap: Lista de formas de independencia condicional implicadas por el DAG
+
+as_tibble(sapply(impliedConditionalIndependencies(leche_bn, 
+                                                  type = "missing.edge"),
+                 as.character)) %>% 
+  datatable()
 
 
 
-
+```
 
 
 
